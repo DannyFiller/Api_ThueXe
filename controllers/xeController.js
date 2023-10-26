@@ -19,6 +19,7 @@ const xeController = {
         try{
             const xe = await Xe.find();
             res.status(200).json(xe);
+       
         }catch (error) {
             res.status(500).json(error);
         }

@@ -6,6 +6,11 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 
+app.use(cors());
+app.use(bodyParser.json({limit:"50mb"}));
+app.use(morgan("common"));
+
+
 const xeRoute = require("./routes/xe");
 const SoDatXeRouter = require("./routes/sodatxe");
 
@@ -21,9 +26,6 @@ mongoose.connect((process.env.MONGODB_URL),() =>{
     }
     
 });
-app.use(bodyParser.json({limit:"50mb"}));
-app.use(cors());
-app.use(morgan("common"));
 
 
 app.use("/xe",xeRoute);
