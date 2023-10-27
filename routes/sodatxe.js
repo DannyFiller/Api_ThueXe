@@ -1,4 +1,4 @@
-const sodatxeController = require("../controllers/sodatxeController");
+const sodatxeController = require("../controllers/SodatxeController");
 
 const router = require("express").Router();
 

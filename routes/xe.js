@@ -1,4 +1,4 @@
-const xeController = require("../controllers/xeController");
+const xeController = require("../controllers/XeController");
 
 const router = require("express").Router();
 
@@ -11,7 +11,7 @@ router.get("/:tenxe",xeController.getXe);
 //xóa xe
 router.delete("/:id",xeController.deleteXe);
 //sửa thông tin xe
-router.put("/:id",xeController.editXe);
+router.put("/:id",xeController.updateXe);
 //search theo loại xe
 router.get("/LoaiXe/:loaixe",xeController.getLoaiXe);
 

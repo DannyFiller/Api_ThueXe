@@ -6,18 +6,23 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 
+//sử dụng các lib import 
 app.use(cors());
 app.use(bodyParser.json({limit:"50mb"}));
 app.use(morgan("common"));
 
 
-const xeRoute = require("./routes/xe");
-const SoDatXeRouter = require("./routes/sodatxe");
+//import các file
+const xeRoute = require("./routes/Xe");
+const SoDatXeRouter = require("./routes/SoDatXe");
+const adminRoutes = require("./routes/Admin");
+const bangGiaRoutes = require("./routes/BangGia");
+const soXeRoutes=require("./routes/SoXe");
+const KhachHang=require("./routes/KhachHang");
 
 //Connete database
 dotenv.config();
 
-// mongoose.set("strictQuery", false);
 mongoose.connect((process.env.MONGODB_URL),() =>{
     try {
         console.log("Đã kết nối database");
@@ -28,9 +33,11 @@ mongoose.connect((process.env.MONGODB_URL),() =>{
 });
 
 
-app.use("/xe",xeRoute);
+app.use("/Xe",xeRoute);
 app.use("/SoDatXe",SoDatXeRouter);
-
+app.use("/BangGia", bangGiaRoutes);
+app.use("/KhachHang",KhachHang);
+app.use("/SoXe",soXeRoutes);
 
 
 app.listen(8000, () => {

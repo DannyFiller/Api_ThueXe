@@ -1,6 +1,6 @@
 const {json} = require("body-parser");
 const {Xe} = require("../model/model");
-const { param } = require("../routes/xe");
+const { param } = require("../routes/Xe");
 
 const xeController = {
     //Thêm xe
@@ -47,15 +47,14 @@ const xeController = {
     },
 
     //sửa thông tin xe
-    editXe:async(req,res) =>{
-        try {
-            const idXe = req.params.id;
-            const{BienSoXe,TenXe,LoaiXe,TinhTrangXe,TangXe,DoiXe,MauXe} = req.body;
-            const updateXe = await Xe.findByIdAndUpdate(idXe,{BienSoXe,TenXe,LoaiXe,TinhTrangXe,TangXe,DoiXe,MauXe},{new : true});
-            res.status(200).json(updateXe);
-        } catch (error) {
-            res.status(500).json(error);
-        }
+    updateXe:async(req,res)=>{
+        try{
+            const xe=await Xe.findById(req.params.id);
+            await xe.updateOne({$set:req.body});
+            res.status(200).json("updateSuccess");
+        }catch(err){
+            res.status(500).json(err);
+        }    
     },
 
     //lấy theo loại xe!!!!!!!!!!!!!!
